@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapter2— —组件生命周期</title>
+    <script src="../libs/react.min.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script type='text/babel'>
+    var HelloWorld = React.createClass({
+        //点击HelloWorld组件，改变state，看组件的生命周期hook函数
+        handleClick: function() {
+            this.setState({test: true});
+        },
+
+        /*实例化start*/
+        getInitialState: function () {
+            console.log("getInitialState");
+            return {test: false};//must return an object or null
+        },
+        componentWillMount: function () {
+            console.log("componentWillMount")
+        },
+        render: function () {
+            console.log("render");
+            return <p onClick={this.handleClick}>click me, {this.props.name ? this.props.name : "World"}</p>;
+        },
+        componentDidMount: function () {
+            console.log("componentDidMount");
+        },
+        /*存在期*/
+        componentWillReceiveProps: function () {
+            console.log("componentWillReceiveProps");
+        },
+        shouldComponentUpdate: function () {
+            console.log("shouldComponentUpdate");
+            return true;
+        },
+        componentWillUpdate: function () {
+            console.log("componentWillUpdate")
+        },
+
+        componentDidUpdate: function () {
+            console.log("componentDidUpdate");
+        },
+        /*销毁期*/
+        componentWillUnmout: function () {
+            console.log("componentWillUnmout");
+        },
+    });
+    var HelloUniverse = React.createClass({
+        getInitialState: function () {
+            return {name: ''};
+        },
+        handleChange: function (event) {
+            this.setState({name: event.target.value});
+        },
+        render: function () {
+            return <div>
+                <HelloWorld name={this.state.name}></HelloWorld>
+                <input type="text" onChange={this.handleChange}/>
+            </div>
+        },
+    });
+    ReactDOM.render(<HelloUniverse>
+    </HelloUniverse>, document.getElementById('app'));
+</script>
+</body>
+</html>
