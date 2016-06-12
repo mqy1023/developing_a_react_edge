@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapter2</title>
+    <script src="../libs/react.min.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+</head>
+<body>
+<script type='text/babel'>
+    var ChildComponent = React.createClass({
+        render: function () {
+            return (<div>
+                        {/*当点击button时，父组件的handleClick函数将被调用*/}
+                        <button onClick={this.props.onMagicClick}>Do Magic</button>
+                    </div>
+            );
+        }
+    });
+    var SaveButton = React.createClass({
+        handleClick: function () {
+            alert('perform parent function!');
+        },
+        render: function () {
+            return (<a className="button save">
+                        {/* 【注意】如何将函数作为prop属性传递给子组件 */}
+                        <ChildComponent onMagicClick={this.handleClick}/>
+                    </a>
+            );
+        }
+    });
+    ReactDOM.render(<SaveButton />, document.body);
+</script>
+</body>
+</html>
