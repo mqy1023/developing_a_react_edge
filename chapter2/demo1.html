@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapter2</title>
+    <script src="../libs/react.min.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+</head>
+<body>
+<script type='text/babel'>
+    var LabelText = React.createClass({
+        render: function () {
+            return React.createElement('div', {className: 'divider'},
+            "Label Text",
+            React.createElement('hr'));
+        }
+    });
+    ReactDOM.render(<LabelText />, document.body);
+</script>
+</body>
+</html>

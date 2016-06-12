@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapter2</title>
+    <script src="../libs/react.min.js" charset="utf-8"></script>
+    <script src="../libs/react-dom.min.js" charset="utf-8"></script>
+    <script src="../libs/browser.min.js" charset="utf-8"></script>
+</head>
+<body>
+<script type='text/babel'>
+
+    var Divider = React.createClass({
+
+        getInitialState: function () {
+            return {
+                inputVal: ''
+            }
+        },
+        handleChange: function (event) {
+            this.setState({inputVal: event.target.value});
+        },
+        hanldeClick: function (event) {
+            this.refs.myInput.focus();
+            this.setState({inputVal: ''});
+        },
+        render: function () {
+            var htmlString = {__html: "<b>文字加粗显示</b>"};
+            return <form>
+                <input ref="myInput" value={this.state.inputVal} placeholder="please input value"
+                       onChange={this.handleChange}/>
+                <input type="button" value="reset" onClick={this.hanldeClick}/>
+                <p>{this.state.inputVal || 'please input value!'}</p>
+                <div dangerouslySetInnerHTML={htmlString}></div>
+            </form>
+        }
+    });
+
+    ReactDOM.render(<Divider ></Divider>, document.body);
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapter2</title>
+    <script src="../libs/react.min.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+</head>
+<body>
+<script type='text/babel'>
+
+    var styles = {
+        borderColor: "#F00",
+        borderThickness: "1px"
+    };
+
+    var Form = React.createClass({
+        render: function () {
+            return <form className="divider">
+                {/* label的htmlFor和input的id名一样*/}
+                <label htmlFor="name">用户名</label>
+                <input /*
+                 just a annotation
+                 */
+                        id="name" style={styles}></input>
+            </form>
+        }
+    });
+
+    ReactDOM.render(<Form >
+    </Form>, document.body);
+
+</script>
+</body>
+</html>
