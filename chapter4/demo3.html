@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapter2</title>
+    <script src="../libs/react.min.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+</head>
+<body>
+<script type='text/babel'>
+
+    var SurveyTableRow = React.createClass({
+        propTypes: {
+            survey: React.PropTypes.string.isRequired
+        },
+        getDefaultProps : function () {
+            return {
+                title : 'Hello World'
+            };
+        },
+
+        render: function() {
+            return <div>
+            <h2> {this.props.survey} </h2>
+            <h2> {this.props.title} </h2>
+            </div>;
+        }
+    });
+    var data = 123;
+    ReactDOM.render(<SurveyTableRow survey={data} />, document.body);
+</script>
+</body>
+</html>
+
+
