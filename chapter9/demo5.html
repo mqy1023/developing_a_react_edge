@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapte9— —表单</title>
+    <script src="../libs/react.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <script type='text/babel'>
+
+        //通过.bind传递其他参数
+//        var MyForm = React.createClass({
+//            getInitialState: function () {
+//                return {
+//                    given_name: "",
+//                    family_name: ""
+//                };
+//            },
+//            handleChange: function (name, event) {
+//                var newState = {};
+//                newState[name] = event.target.value;
+//                this.setState(newState);
+//            },
+//            submitHandler: function (event) {
+//                event.preventDefault();
+//                var words = [
+//                    "Hi",
+//                    this.state.given_name,
+//                    this.state.family_name
+//                ];
+//                alert(words.join(" "));
+//            },
+//            render: function () {
+//                return <form onSubmit={this.submitHandler}>
+//                    <label htmlFor="given_name">Given Name:</label>
+//                    <br />
+//                    <input
+//                            type="text"
+//                            name="given_name"
+//                            value={this.state.given_name}
+//                            onChange={this.handleChange.bind(this,'given_name')}/>
+//                    <br />
+//                    <label htmlFor="family_name">Family Name:</label>
+//                    <br />
+//                    <input
+//                            type="text"
+//                            name="family_name"
+//                            value={this.state.family_name}
+//                            onChange={this.handleChange.bind(this,'family_name')}/>
+//                    <br />
+//                    <button type="submit">Speak</button>
+//                </form>;
+//            }
+//        });
+
+        //使用DOMNode的name属性来判断需要更新哪个组件的状态
+        var MyForm = React.createClass({
+            getInitialState: function () {
+                return {
+                    given_name: "",
+                    family_name: ""
+                };
+            },
+            handleChange: function (event) {
+                var newState = {};
+                newState[event.target.name] = event.target.value;
+                this.setState(newState);
+            },
+            submitHandler: function (event) {
+                event.preventDefault();
+                var words = [
+                    "Hi",
+                    this.state.given_name,
+                    this.state.family_name
+                ];
+                alert(words.join(" "));
+            },
+            render: function () {
+                return <form onSubmit={this.submitHandler}>
+                    <label htmlFor="given_name">Given Name:</label>
+                    <br />
+                    <input
+                            type="text"
+                            name="given_name"
+                            value={this.state.given_name}
+                            onChange={this.handleChange}/>
+                    <br />
+                    <label htmlFor="family_name">Family Name:</label>
+                    <br />
+                    <input
+                            type="text"
+                            name="family_name"
+                            value={this.state.family_name}
+                            onChange={this.handleChange}/>
+                    <br />
+                    <button type="submit">Speak</button>
+                </form>;
+            }
+        });
+
+        ReactDOM.render(<MyForm />, document.getElementById('app'));
+    </script>
+</body>
+</html>
+
+

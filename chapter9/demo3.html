@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapte9— —表单</title>
+    <script src="../libs/react.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <script type='text/babel'>
+
+        //非约束的
+//        var MyForm = React.createClass({
+//            submitHandler: function (event) {
+//                event.preventDefault();
+//                alert(this.refs.checked.checked);
+//            },
+//            render: function () {
+//                return (
+//                        <form onSubmit={this.submitHandler}>
+//                            <input
+//                                    ref="checked"
+//                                    type="checkbox"
+//                                    value="A"
+//                                    defaultChecked="ture"
+//                            />
+//                            <br/>
+//                            <button type="submit">Speak</button>
+//                        </form>
+//                )
+//            }
+//        });
+
+        //约束的
+        var MyForm = React.createClass({
+            getInitialState: function () {
+                return {
+                    isChecked: true
+                };
+            },
+            handleChange: function (event) {
+                this.setState({isChecked: event.target.checked});
+            },
+            submitHandler: function (event) {
+                event.preventDefault();
+                alert(this.state.isChecked);
+            },
+            render: function () {
+                return (
+                        <form onSubmit={this.submitHandler}>
+                            <input
+                                    type="checkbox"
+                                    value="A"
+                                    checked={this.state.isChecked}
+                                    onChange={this.handleChange}
+                            />
+                            <br/>
+                            <button type="submit">Speak</button>
+                        </form>
+                )
+            }
+        });
+        ReactDOM.render(<MyForm />, document.getElementById('app'));
+    </script>
+</body>
+</html>
+
+

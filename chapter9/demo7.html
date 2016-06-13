@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapte9— —表单</title>
+    <script src="../libs/react.min.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <script type='text/babel'>
+
+        var Radio = React.createClass({
+            propTypes: {
+                onChange: React.PropTypes.func
+            },
+            getInitialState: function () {
+                return {
+                    value: this.props.defaultValue
+                };
+            },
+            handleChange: function (event) {
+                if (this.props.onChange) {
+                    this.props.onChange(event);
+                }
+                this.setState({
+                    value: event.target.value
+                });
+            },
+            render: function () {
+                var children = {};
+                var value = this.props.value || this.state.value;
+
+                React.Children.forEach(this.props.children, function (child, i) {
+                    var label = <label>
+                    <input
+                    type="radio"
+                    name={this.props.name}
+                    value={child.props.value}
+                    checked={child.props.value == value}
+                    onChange={this.handleChange} />
+                    {child.props.children}
+                    <br/>
+                    </label>;
+
+                    children['label' + i] = label;
+                }.bind(this));
+
+                return this.transferPropsTo(<span>{children}</span>);
+            }
+        });
+
+        var MyForm = React.createClass({
+            getInitialState: function () {
+                return {my_radio: "B"};
+            },
+            handleChange: function (event) {
+                this.setState({
+                    my_radio: event.target.value
+                });
+            },
+            submitHandler: function (event) {
+                event.preventDefault();
+                alert(this.state.my_radio);
+            },
+            render: function () {
+                return <form onSubmit={this.submitHandler}>
+                <Radio name="my_radio"
+                value={this.state.my_radio}
+                onChange={this.handleChange}>
+                <option value="A">First Option</option>
+                <option value="B">Second Option</option>
+                <option value="C">Third Option</option>
+                </Radio>
+                <button type="submit">Speak</button>
+                        </form>;
+            }
+        });
+
+        ReactDOM.render(<MyForm />, document.getElementById('app'));
+    </script>
+</body>
+</html>
+
+

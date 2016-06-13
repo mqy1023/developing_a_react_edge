@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapte9— —表单</title>
+    <script src="../libs/react.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <script type='text/babel'>
+
+        var MyForm = React.createClass({
+            getInitialState: function () {
+                return {
+                    radio: "B"
+                };
+            },
+            handleChange: function (event) {
+                this.setState({
+                    radio: event.target.value
+                });
+            },
+            submitHandler: function (event) {
+                event.preventDefault();
+                alert(this.state.radio);
+            },
+            render: function () {
+                return <form onSubmit={this.submitHandler}>
+                    <input
+                            type="radio"
+                            value="A"
+                            checked={this.state.radio == "A"}
+                            onChange={this.handleChange}/>A
+                    <br />
+                    <input
+                            type="radio"
+                            value="B"
+                            checked={this.state.radio == "B"}
+                            onChange={this.handleChange}/>B
+                    <br />
+                    <input
+                            type="radio"
+                            value="C"
+                            checked={this.state.radio == "C"}
+                            onChange={this.handleChange}/>C
+                    <br />
+                    <button type="submit">Speak</button>
+                </form>;
+            }
+        });
+
+        ReactDOM.render(<MyForm />, document.getElementById('app'));
+    </script>
+</body>
+</html>
+
+

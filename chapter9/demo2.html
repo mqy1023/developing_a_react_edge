@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapte9— —表单</title>
+    <script src="../libs/react.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <script type='text/babel'>
+
+        var MyForm = React.createClass({
+            getInitialState: function () {
+                return {
+                    options: ["B"]
+                }
+            },
+            handleChange: function (event) {
+                var checked = [];
+                var sel = event.target;
+
+                for (var i = 0; i < sel.length; i++) {
+                    var option = sel.options[i];
+                    if (option.selected) {
+                        checked.push(option.value);
+                    }
+                }
+                this.setState({options: checked});
+            },
+            submitHandler: function (event) {
+                event.preventDefault();
+                alert(this.state.options);
+            },
+            render: function () {
+                return (
+                        <form onSubmit={this.submitHandler}>
+                            <label classsName="name">please select:</label>
+                            <br />
+                            <select multiple="true" value={this.state.options}
+                                    onChange={this.handleChange}>
+                                <option value="A">First Option</option>
+                                <option value="B">Second Option</option>
+                                <option value="C">Third Option</option>
+                            </select>
+                            <br/>
+                            <button type="submit">Speak</button>
+                        </form>
+                )
+            }
+        })
+        ReactDOM.render(<MyForm />, document.getElementById('app'));
+    </script>
+</body>
+</html>
+
+

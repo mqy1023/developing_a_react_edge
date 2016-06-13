@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapte9— —表单</title>
+    <script src="../libs/react-with-addons.min.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <script type='text/babel'>
+
+        //使用React的addons中插件
+        var MyForm = React.createClass({
+            mixins: [React.addons.LinkedStateMixin],
+            getInitialState: function () {
+                return {
+                    given_name: "",
+                    family_name: ""
+                };
+            },
+            submitHandler: function (event) {
+                event.preventDefault();
+                var words = [
+                    "Hi",
+                    this.state.given_name,
+                    this.state.family_name
+                ];
+                alert(words.join(" "));
+            },
+            render: function () {
+                return <form onSubmit={this.submitHandler}>
+                    <label htmlFor="given_name">Given Name:</label>
+                    <br />
+                    <input
+                            type="text"
+                            name="given_name"
+                            valueLink={this.linkState('given_name')}/>
+                    <br />
+                    <label htmlFor="family_name">Family Name:</label>
+                    <br />
+                    <input
+                            type="text"
+                            name="family_name"
+                            valueLink={this.linkState('family_name')}/>
+                    <br />
+                    <button type="submit">Speak</button>
+                </form>;
+            }
+        });
+
+        ReactDOM.render(<MyForm />, document.getElementById('app'));
+    </script>
+</body>
+</html>
+
+
