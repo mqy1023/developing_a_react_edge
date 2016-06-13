@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapter6— —组件的复合</title>
+    <script src="../libs/react.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <script type='text/babel'>
+
+        var AnswerRadioInput = React.createClass({
+
+            propTypes: {
+                id: React.PropTypes.string,
+                name: React.PropTypes.string.isRequired,
+                value: React.PropTypes.string.isRequired,
+                checked: React.PropTypes.bool,
+                onSelectedChanged: React.PropTypes.func.isRequired
+            },
+            handleChanged: function (e) {
+                if (this.props.onSelectedChanged) {
+                    this.props.onSelectedChanged(e.target.value);
+                }
+            },
+            render: function () {
+                return (
+                        <div className="radio">
+                            <label htmlFor={this.props.id}>
+                                <input type="radio"
+                                       id={this.props.id}
+                                       name={this.props.name}
+                                       value={this.props.value}
+                                       checked={this.props.isChecked}
+                                       onChange={this.handleChanged}
+                                />
+                                {this.props.value}
+                            </label>
+                        </div>);
+            }
+        })
+
+        var AnswerMultipleChoiceQuestion = React.createClass({
+
+            getInitialState: function () {
+                return {selectedValue: this.props.selectedValue};
+            },
+            onSelectedValueChanged: function (value) {
+                this.setState({selectedValue: value});
+            },
+            renderChoices: function () {
+                return this.props.choices.map(function (choice, index) {
+                    return (<AnswerRadioInput key={index}
+                                              id={this.props.name + "_" + index}
+                                              name={this.props.name}
+                                              value={choice}
+                                              isChecked={this.state.selectedValue === choice}
+                                              onSelectedChanged={this.onSelectedValueChanged}/>);
+                }.bind(this));
+            },
+            render: function () {
+                return (
+                        <div classsName="form-group">
+                            <label className="survey-item-label" htmlFor={this.state.id}>
+                                City u choose :{this.state.selectedValue}
+                            </label>
+                            <div className="survey-item-content">
+                                {this.renderChoices()}
+                            </div>
+                        </div>
+                );
+            }
+        });
+        ReactDOM.render(<AnswerMultipleChoiceQuestion name="City" choices={["Shanghai","Shenzhen","Beijing"]}
+                                                      selectedValue="Shenzhen"/>, document.getElementById('app'));
+    </script>
+</body>
+</html>
+
+

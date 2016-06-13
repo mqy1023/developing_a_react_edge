@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>developing a react edge chapter7— —mixin</title>
+    <script src="../libs/react.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+    <link rel="stylesheet" href="../libs/bootstrap.min.css" type="text/css"/>
+</head>
+<body>
+<div id="app">
+    <script type='text/babel'>
+
+        var IntervalMixin = {
+
+            setInterval: function (callback, interval) {
+                var token = setInterval(callback, interval);
+                this._intervals.push(token);
+                return token;
+            },
+            componentDidMount: function () {
+                this._intervals = [];
+                console.log("1");
+            },
+            componentWillUnmount: function () {
+                this._intervals.map(clearInterval);
+            }
+        };
+
+        var Since2014 = React.createClass({
+            mixins: [IntervalMixin], // Use the mixin
+            componentDidMount: function () {
+                this.setInterval(this.forceUpdate.bind(this), 1000);
+                console.log("2");
+            },
+            render: function () {
+                var from = Number(new Date(2014, 0, 1));
+                var to = Date.now();
+                return (
+                        <div>{Math.round((to-from)/1000)}
+                </div>
+                );
+            }
+        });
+
+        ReactDOM.render(<Since2014/>, document.getElementById('app'));
+    </script>
+</body>
+</html>
+
+
