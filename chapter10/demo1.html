@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>React Css3动画</title>
+    <script src="../libs/react-with-addons.min.js"></script>
+    <script src="../libs/react-dom.min.js"></script>
+    <script src="../libs/browser.min.js"></script>
+    <style>
+        /*给下面元素添加transitionName="example"意味着
+        给它添加了添加了以下4个class：example- xxx*/
+        .example-enter {
+            opacity: 0.01;
+            transition: opacity .5s ease-in;
+        }
+
+        .example-enter.example-enter-active {
+            opacity: 1;
+        }
+
+        .example-leave {
+            opacity: 1;
+            transition: opacity .5s ease-in;
+        }
+
+        .example-leave.example-leave-active {
+            opacity: 0.01;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/babel">
+    //    引入react-with-addons中的CSSTransitionGroup插件
+    var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
+    var TodoList = React.createClass({
+        getInitialState: function () {
+            return {items: ['hello', 'world', 'click', 'me']};
+        },
+        handleAdd: function () {
+            var newItems =
+                    this.state.items.concat([prompt('Enter some text:')]);
+            this.setState({items: newItems});
+        },
+        handleRemove: function (i) {
+            var newItems = this.state.items;
+            newItems.splice(i, 1);
+            this.setState({items: newItems});
+        },
+        render: function () {
+            var items = this.state.items.map(function (item, i) {
+                return (
+                        <div key={item} onClick={this.handleRemove.bind(this, i)}>
+                            {item}
+                        </div>
+                );
+            }.bind(this));
+            return (
+                    <div>
+                        <button onClick={this.handleAdd}>Add Item</button>
+                        <ReactCSSTransitionGroup transitionName="example">
+                            {items}
+                        </ReactCSSTransitionGroup>
+                    </div>
+            );
+        }
+    });
+    ReactDOM.render(<TodoList></TodoList>, document.body);
+</script>
+</body>
+</html>

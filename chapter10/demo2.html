@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <title>React JS模拟动画</title>
+</head>
+
+<body>
+<script src="../libs/react-with-addons.min.js"></script>
+<script src="../libs/react-dom.min.js"></script>
+<script src="../libs/browser.min.js"></script>
+<script type="text/babel">
+    var Positioner = React.createClass({
+        getInitialState: function () {
+            return {
+                position: 0
+            };
+        },
+        resolveSetTimeout: function () {
+            if (this.state.position < this.props.position) {
+                this.setState({
+                    position: this.state.position + 1
+                });
+            }
+        },
+        componentDidUpdate: function () { //首次并不会hook
+            if (this.props.position) {
+                setTimeout(this.resolveSetTimeout, this.props.timeoutMs);
+            }
+        },
+        render: function () {
+            var divStyle = {
+                marginLeft: this.state.position
+            };
+            return <div style={divStyle}>This will animate!</div>
+        }
+    })
+    //第一次创建不会调用componentDidUpdate
+    ReactDOM.render(<Positioner></Positioner>, document.body);
+    //因为上面Positioner已首次实例化，不会再创建新Positioner组建，而是改变当前组件状态，会调用componentDidUpdate
+    ReactDOM.render(<Positioner position={100} timeoutMs={10}></Positioner>, document.body);
+</script>
+</body>
+
+</html>
