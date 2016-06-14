@@ -1,5 +1,7 @@
 
-** 启动步骤
+## Webpack构建
+
+### 启动步骤
 
 * 1、npm install 
 * 2、bower install 
@@ -8,7 +10,7 @@
 &emsp;&emsp;npm start &emsp;&emsp;然后在浏览器中输入:localhost:8080 <br />
 &emsp;&emsp;npm run prod  <br/>
 
-* 【《 使用Webpack构建React应用》】 (http://blog.csdn.net/mqy1023/article/details/51611626)
+* [《 使用Webpack构建React应用》](http://blog.csdn.net/mqy1023/article/details/51611626)
 
 * **
 
@@ -91,7 +93,7 @@ module.exports = {
 
 ##四、使用
 
-1、npm install 
+1、npm install  <br />
 2、bower install  //管理前端react包
 
 3、构建命令
