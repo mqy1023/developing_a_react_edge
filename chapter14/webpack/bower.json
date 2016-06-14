@@ -1,0 +1,20 @@
+{
+  "name": "webpack_for_react",
+  "description": "基于bower管理前端包和webpack构建的react开发基本框架",
+  "main": "index.js",
+  "authors": [
+    "mqy1023"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/mqy1023/react-basejs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "^15.1.0"
+  }
+}
