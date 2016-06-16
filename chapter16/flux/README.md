@@ -23,5 +23,5 @@
 
 * [参考《Architecting React.js Apps with Flux.》](http://tylermcginnis.com/reactjs-tutorial-pt-3-architecting-react-js-apps-with-flux/)
 
-! [理解Flux](http://tylermcginnis.com/wp-content/uploads/2015/04/Flux-Diagram.png)
+![理解Flux](http://tylermcginnis.com/wp-content/uploads/2015/04/Flux-Diagram.png)
 
