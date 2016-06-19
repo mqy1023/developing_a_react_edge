@@ -28,6 +28,8 @@
 * **
 ## 更多学习参考
 
+* [本人写的另外的demo](https://github.com/mqy1023/react-basejs/tree/master/src/demo6)
+
 * [《React Router 使用教程》](http://www.ruanyifeng.com/blog/2016/05/react_router.html)
 
 * [《react-router-tutorial》](https://github.com/reactjs/react-router-tutorial/tree/master/lessons)
