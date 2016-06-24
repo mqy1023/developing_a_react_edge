@@ -19,7 +19,9 @@
 
 * 5、npm install --save object-assign   &emsp;//合并对象
 
-## 参考链接
+## 更多参考
+
+* [本人另外flux项目](https://github.com/mqy1023/react-basejs/tree/master/src/demo7)
 
 * [参考《Architecting React.js Apps with Flux.》](http://tylermcginnis.com/reactjs-tutorial-pt-3-architecting-react-js-apps-with-flux/)
 
